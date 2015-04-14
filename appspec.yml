@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+- source: content/
+destination: /var/www/html/
+hooks:
+BeforeInstall:
+ - location: scripts/installapache.sh
+timeout: 120
+runas: root
+- location: scripts/rmoldsite.sh
+timeout: 120
+runas: root
+- location: scripts/copysettings.sh
+timeout: 120
+runas: root
+AfterInstall:
+- location: scripts/changeperms.sh
+timeout: 180
